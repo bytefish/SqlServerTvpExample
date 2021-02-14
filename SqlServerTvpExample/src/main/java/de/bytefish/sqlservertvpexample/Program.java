@@ -28,8 +28,9 @@ public class Program {
 		// Create the Batch Processor:
 		DeviceMeasurementBulkProcessor processor = new DeviceMeasurementBulkProcessor();
 
-		// Generate a Stream of Data Points:
-		Stream<DeviceMeasurement> measurementStream = new DataGenerator(startDate, endDate, Duration.ofSeconds(1))
+		// Generate a Stream of data using a fake device sending each 15s for a year. This should
+		// generate something around 2 Million measurements:
+		Stream<DeviceMeasurement> measurementStream = new DataGenerator(startDate, endDate, Duration.ofSeconds(15))
 				.generate("device1", "parameter1", 10, 19);
 
 		// Write Data in 80000 Value Batches:
